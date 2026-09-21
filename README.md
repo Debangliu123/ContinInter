@@ -178,15 +178,8 @@ The citation information will be updated after publication.
 
 ---
 
-## Contact
 
-For questions or discussions, please contact:
 
-**Debang Liu**  
-Chongqing University of Posts and Telecommunications  
-Email: `liudb@cqupt.edu.cn`
-
----
 
 <div align="center">
 
