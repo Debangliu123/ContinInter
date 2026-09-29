@@ -73,7 +73,7 @@ ContinInter achieves competitive separation performance with a compact architect
 The following bubble chart compares separation performance, computational cost, and model size. The horizontal axis denotes MACs, the vertical axis denotes SI-SNRi, and bubble size represents the number of model parameters.
 
 <p align="center">
-  <img src="Pic/macs_si_snri_model_size_bubble-v12.jpg" alt="Bubble chart comparing SI-SNRi, MACs, and model size" width="100%">
+  <img src="Pic/macs_si_snri_model_size_bubble-v12.jpg" alt="Bubble chart comparing SI-SNRi, MACs, and model size" width="70%">
 </p>
 
 <p align="center">
