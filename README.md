@@ -9,17 +9,27 @@
 School of Communications and Information Engineering  
 Chongqing University of Posts and Telecommunications, Chongqing, China
 
+[Our Method](#our-method) • [Demo](#demo) • [Network Architecture](#network-architecture) • [Results](#results) • [Citation](#citation)
+
 </div>
 
 ---
 
 ## Our Method
 
-We propose **ContinInter**, an efficient audio-visual speech separation framework designed to continuously exploit complementary audio and visual information across different resolutions, network layers, and modalities.
+We propose **ContinInter**, an efficient audio-visual speech separation framework that continuously exploits complementary audio and visual information throughout multi-resolution sequence modeling.
 
-ContinInter contains two core components: the **Interactive State-Aware Model (ISAM)** and **Multi-Scale Attentive State-Space Sequence Modeling (MASS)**. ISAM embeds cross-attention into convolutional state-space modeling to enable continuous cross-modal interaction, whereas MASS combines temporal-channel enhancement, DWT-SSM, and self-attention to jointly capture local structures, long-range dependencies, and global context.
+ContinInter comprises two core components: the **Interactive State-Aware Model (ISAM)** and **Multi-Scale Attentive State-Space Sequence Modeling (MASS)**. ISAM combines cross-attention with convolutional state-space modeling to enable continuous cross-modal interaction across network layers. MASS integrates temporal-channel enhancement, parallel temporal convolution and state-space branches, and self-attention to jointly capture local dynamics, long-range dependencies, and global context.
 
-Experimental results on GRID-Mix, LRS2-Mix, and LRS3-Mix demonstrate that ContinInter achieves near-best separation performance at its level of computational efficiency while maintaining a favorable balance among model size, computational cost, and training cost.
+Experiments on GRID-Mix, LRS2-Mix, and LRS3-Mix demonstrate a favorable balance between separation performance, model size, computational cost, and training memory consumption.
+
+---
+
+## Demo
+
+The following video demonstrates the effectiveness of ContinInter for speech separation on selected real-world recordings.
+
+https://github.com/user-attachments/assets/bf8b7764-7fbd-4866-8d99-ea22ac9cfd66
 
 ---
 
@@ -27,141 +37,69 @@ Experimental results on GRID-Mix, LRS2-Mix, and LRS3-Mix demonstrate that Contin
 
 ### Main Framework
 
-ContinInter adopts a multi-scale encoder-decoder architecture for time-domain audio-visual speech separation. The encoded audio and visual features are first processed by separate MASS branches to strengthen their modality-specific contextual representations.
-
-ISAM then performs continuous audio-visual interaction across different resolutions and network layers. After cross-modal fusion, an audio-visual MASS branch further models the fused sequence for mask estimation and waveform reconstruction.
-
-<!--
-Upload the overall architecture figure to:
-
-picture/ContinInter_framework.png
-
-Then replace the text below with:
+ContinInter adopts a multi-scale encoder-decoder architecture for time-domain audio-visual speech separation. Separate MASS branches first enhance the contextual representations of the encoded audio and visual features. ISAM then enables continuous cross-modal interaction across resolutions and network layers. Following adaptive gated fusion, an audio-visual MASS branch further refines the fused representation for mask estimation and waveform reconstruction.
 
 <p align="center">
-  <img src="picture/ContinInter_framework.png" width="95%">
+  <img src="Pic/ContinInter12_low.jpg" alt="Overall architecture of ContinInter" width="100%">
 </p>
--->
 
 <p align="center">
-  <b>The overall ContinInter architecture will be added here.</b>
+  <em>Overall architecture of ContinInter.</em>
 </p>
-
----
 
 ### Interactive State-Aware Model
 
-The **Interactive State-Aware Model (ISAM)** consists of stacked Cross-Modal Dynamic State Blocks and an Adaptive Gated Fusion module.
+The **Interactive State-Aware Model (ISAM)** comprises stacked **Cross-Modal Dynamic State Blocks (CDSBs)** followed by **Adaptive Gated Fusion (AGF)**.
 
-Each dynamic state block embeds cross-attention into convolutional state-space modeling. Cross-attention establishes associations between heterogeneous audio and visual features, while DWT-SSM captures temporal dependencies within the interacted representations. Through block stacking, ISAM continuously refines cross-modal relationships across multiple resolutions and network layers.
-
-Adaptive gated fusion subsequently selects and combines complementary information from the audio and visual representations.
-
-<!--
-Upload the ISAM figure to:
-
-picture/ISAM.png
-
-Then replace the text below with:
-
-<p align="center">
-  <img src="picture/ISAM.png" width="80%">
-</p>
--->
-
-<p align="center">
-  <b>The ISAM architecture will be added here.</b>
-</p>
-
----
+Within each CDSB, cross-attention establishes associations between audio and visual features, while convolutional state-space modeling captures temporal dependencies in the attended representations. Repeating these operations across layers progressively refines both streams, allowing complementary cross-modal information to inform sequence modeling throughout the network. AGF then adaptively weights and combines the resulting audio and visual representations.
 
 ### Multi-Scale Attentive State-Space Sequence Modeling
 
-The **Multi-Scale Attentive State-Space Sequence Modeling (MASS)** network integrates a Temporal-Channel Enhancement Block, DWT-SSM, self-attention, and residual connections.
+**Multi-Scale Attentive State-Space Sequence Modeling (MASS)** integrates temporal-channel enhancement, parallel temporal convolution and selective state-space branches, self-attention, and residual connections.
 
-The Temporal-Channel Enhancement Block strengthens target-related temporal-channel features. DWT-SSM combines dilated depthwise temporal convolution with selective state-space modeling to efficiently capture local structures and long-range dependencies. Self-attention further models global relationships among sequence features.
-
-Through multi-layer stacking, MASS progressively integrates local structures, temporal-channel responses, long-range state dependencies, and global contextual information.
-
-<!--
-Upload the MASS figure to:
-
-picture/MASS.png
-
-Then replace the text below with:
+Temporal-channel enhancement enriches feature representations, while the parallel branches capture local temporal structure and long-range dependencies. Self-attention further models global contextual relationships. Together, these operations support complementary sequence modeling across multiple temporal scales.
 
 <p align="center">
-  <img src="picture/MASS.png" width="80%">
-</p>
--->
-
-<p align="center">
-  <b>The MASS architecture will be added here.</b>
+  <img src="Pic/MREB2.jpg" alt="Detailed architecture of a ContinInter network component" width="60%">
 </p>
 
 ---
 
 ## Results
 
-ContinInter is evaluated on three audio-visual speech separation benchmarks:
+We evaluate ContinInter on three audio-visual speech separation benchmarks: **GRID-Mix**, **LRS2-Mix**, and **LRS3-Mix**.
 
-- **GRID-Mix**
-- **LRS2-Mix**
-- **LRS3-Mix**
+ContinInter achieves competitive separation performance with a compact architecture and low computational cost. The experimental comparisons also demonstrate reduced training memory consumption, supporting a favorable balance between separation quality and resource requirements.
 
-The experimental results demonstrate that ContinInter:
+### Lip Embedding Visualization
 
-- effectively exploits complementary audio-visual information;
-- achieves near-best separation performance at its level of computational efficiency;
-- maintains a compact model size and low computational cost;
-- reduces training memory consumption;
-- achieves a favorable balance between separation performance and efficiency.
-
-<!--
-Upload the experimental comparison figure to:
-
-picture/performance_comparison.png
-
-Then add:
+The following figure visualizes lip embeddings from the evaluation datasets.
 
 <p align="center">
-  <img src="picture/performance_comparison.png" width="90%">
+  <img src="Pic/Dataset%20visualization1.png" alt="Visualization of lip embeddings across datasets" width="90%">
 </p>
--->
 
----
+<p align="center">
+  <em>Visualization of lip embeddings across datasets.</em>
+</p>
 
-## Demo
-This video is used to demonstrate the effectiveness of our model for speech separation on selected real-world recordings:
+### Spectrogram Visualization
 
-https://github.com/user-attachments/assets/bf8b7764-7fbd-4866-8d99-ea22ac9cfd66
+The following figure provides a qualitative comparison of speech separation results through spectrogram visualization.
 
+<p align="center">
+  <img src="Pic/spectrogram%20visualization.png" alt="Spectrogram visualization of speech separation results" width="100%">
+</p>
 
-<!--
-After uploading a demonstration video to GitHub, paste the generated
-GitHub attachment URL directly below the corresponding title.
-
-### Example 1
-
-**Input mixture**
-
-https://github.com/user-attachments/assets/your-mixture-video-id
-
-**Separated speaker 1**
-
-https://github.com/user-attachments/assets/your-speaker1-video-id
-
-**Separated speaker 2**
-
-https://github.com/user-attachments/assets/your-speaker2-video-id
--->
-
+<p align="center">
+  <em>Spectrogram visualization of speech separation results.</em>
+</p>
 
 ---
 
 ## Citation
 
-If ContinInter is useful for your research, please cite our work:
+If you find ContinInter useful for your research, please cite our work:
 
 ```bibtex
 @misc{liu2026contininter,
@@ -176,9 +114,6 @@ If ContinInter is useful for your research, please cite our work:
 The citation information will be updated after publication.
 
 ---
-
-
-
 
 <div align="center">
 
