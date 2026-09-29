@@ -6,7 +6,7 @@
 
 **Debang Liu<sup>†</sup>, Tianqi Zhang, and Mads Christensen**
 
-[Our Method](#our-method) • [Demo](#demo) • [Network Architecture](#network-architecture) • [Results](#results) • [Code Availability](#code-availability) • [Citation](#citation)
+[Our Method](#our-method) • [Demo](#demo) • [Network Architecture](#network-architecture) • [Results](#results) • [Code](#code-availability) • [Citation](#citation)
 
 </div>
 
