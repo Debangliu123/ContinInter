@@ -4,12 +4,9 @@
 
 ### State-Space and Attention-Aware Audio-Visual Continuous Interaction Modeling for Efficient Speech Separation
 
-**Debang Liu<sup>†</sup>, Tianqi Zhang, Chen Yi, and Ying Wei**
+**Debang Liu<sup>†</sup>, Tianqi Zhang, and Mads Christensen**
 
-School of Communications and Information Engineering  
-Chongqing University of Posts and Telecommunications, Chongqing, China
-
-[Our Method](#our-method) • [Code Availability](#code-availability) • [Demo](#demo) • [Network Architecture](#network-architecture) • [Results](#results) • [Citation](#citation)
+[Our Method](#our-method) • [Demo](#demo) • [Network Architecture](#network-architecture) • [Results](#results) • [Code Availability](#code-availability) • [Citation](#citation)
 
 </div>
 
@@ -22,12 +19,6 @@ We propose **ContinInter**, an efficient audio-visual speech separation framewor
 ContinInter comprises two core components: the **Interactive State-Aware Model (ISAM)** and **Multi-Scale Attentive State-Space Sequence Modeling (MASS)**. ISAM combines cross-attention with convolutional state-space modeling to enable continuous cross-modal interaction across network layers. MASS integrates temporal-channel enhancement, parallel temporal convolution and state-space branches, and self-attention to jointly capture local dynamics, long-range dependencies, and global context.
 
 Experiments on GRID-Mix, LRS2-Mix, and LRS3-Mix demonstrate a favorable balance between separation performance, model size, computational cost, and training memory consumption.
-
----
-
-## Code Availability
-
-The source code will be released soon.
 
 ---
 
@@ -77,6 +68,18 @@ We evaluate ContinInter on three audio-visual speech separation benchmarks: **GR
 
 ContinInter achieves competitive separation performance with a compact architecture and low computational cost. The experimental comparisons also demonstrate reduced training memory consumption, supporting a favorable balance between separation quality and resource requirements.
 
+### Performance–Efficiency Comparison
+
+The following bubble chart compares separation performance, computational cost, and model size. The horizontal axis denotes MACs, the vertical axis denotes SI-SNRi, and bubble size represents the number of model parameters.
+
+<p align="center">
+  <img src="Pic/macs_si_snri_model_size_bubble-v12.jpg" alt="Bubble chart comparing SI-SNRi, MACs, and model size" width="100%">
+</p>
+
+<p align="center">
+  <em>Comparison of separation performance, computational cost, and model size.</em>
+</p>
+
 ### Lip Embedding Visualization
 
 The following figure visualizes lip embeddings from the evaluation datasets.
@@ -103,6 +106,12 @@ The following figure provides a qualitative comparison of speech separation resu
 
 ---
 
+## Code Availability
+
+The source code will be released soon.
+
+---
+
 ## Citation
 
 If you find ContinInter useful for your research, please cite our work:
@@ -111,7 +120,7 @@ If you find ContinInter useful for your research, please cite our work:
 @misc{liu2026contininter,
   title  = {ContinInter: State-Space and Attention-Aware Audio-Visual
             Continuous Interaction Modeling for Efficient Speech Separation},
-  author = {Liu, Debang and Zhang, Tianqi and Yi, Chen and Wei, Ying},
+  author = {Liu, Debang and Zhang, Tianqi and Christensen, Mads},
   year   = {2026},
   note   = {Manuscript}
 }
