@@ -134,9 +134,7 @@ Then add:
 ## Demo
 This video is used to demonstrate the effectiveness of our model for speech separation on selected real-world recordings:
 
-
 https://github.com/user-attachments/assets/bf8b7764-7fbd-4866-8d99-ea22ac9cfd66
-
 
 
 <!--
