@@ -156,9 +156,6 @@ https://github.com/user-attachments/assets/your-speaker1-video-id
 https://github.com/user-attachments/assets/your-speaker2-video-id
 -->
 
-<p align="center">
-  <b>Audio-visual separation demonstrations are coming soon.</b>
-</p>
 
 ---
 
